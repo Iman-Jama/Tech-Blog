@@ -1,18 +1,25 @@
-[  { 
-    "title": "My First Blog Post",   
-    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan ipsum vel est elementum, eu pellentesque magna pharetra.",   
-    "created_by": 1  
-    },  
-    
-    {    
-    "title": "My Second Blog Post",   
-    "content": "Duis vitae libero in enim ullamcorper vestibulum. Suspendisse eget risus sit amet felis posuere efficitur.",    
-     "created_by": 2 
- }, 
+[
+    {
+      "id": 1,
+      "title": "My First Blog Post",
+      "content": "This is the content of my first blog post.",
+      "created_by": "1",
+      "date_created": "2022-01-01T00:00:00.000Z"
+    },
+    {
+      "id": 2,
+      "title": "My Second Blog Post",
+      "content": "This is the content of my second blog post.",
+      "created_by": "2",
+      "date_created": "2022-01-02T00:00:00.000Z"
+    },
+    {
+      "id": 3,
+      "title": "My Third Blog Post",
+      "content": "This is the content of my third blog post.",
+      "created_by": "3",
+      "date_created": "2022-01-03T00:00:00.000Z"
+    }
 
-    {    
-    "title": "My Third Blog Post",    
-     "content": "Pellentesque ultrices erat a velit bibendum, eget tristique eros malesuada. Suspendisse potenti. ",   
-    "created_by": 3 
-     }
-]
+  ]
+  

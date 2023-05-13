@@ -39,7 +39,7 @@ app.use(session(sess));
 
 // Set Handlebars as the default template engine.
 app.engine("handlebars", hbs.engine);
-app.set("view engine", "hbs");
+app.set("view engine", "handlebars");
 
 //middleware to ensure JSON data is parsed correctly
 app.use(express.json());

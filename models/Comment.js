@@ -13,12 +13,12 @@ Comment.init(
       primaryKey: true,
       autoIncrement: true
     },
-    username: {
+    user_id: {
       type: DataTypes.INTEGER,
       allowNull: true,
       references: {
         model: "user",
-        key: "user_id",
+        key: "id",
       },
     },
     comment_text: {

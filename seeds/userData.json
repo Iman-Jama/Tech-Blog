@@ -1,18 +1,17 @@
 [
-    {
-      "name": "John Doe",
-      "email": "johndoe@example.com",
-      "password": "password1"
-    },
-    {
-      "name": "Jane Doe",
-      "email": "janedoe@example.com",
-      "password": "password2"
-    },
-    {
-      "name": "Bob Smith",
-      "email": "bobsmith@example.com",
-      "password": "password3"
-    }
-  ]
-  
+  {
+    "username": "john_doe",
+    "email": "john_doe@example.com",
+    "password": "password123"
+  },
+  {
+    "username": "jane_smith",
+    "email": "jane_smith@example.com",
+    "password": "password456"
+  },
+  {
+    "username": "bob_smith",
+    "email": "bob_smith@example.com",
+    "password": "password789"
+  }
+]

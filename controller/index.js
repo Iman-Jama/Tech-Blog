@@ -1,14 +1,11 @@
-const routes = require("express").Router();
+const router = require("express").Router();
 const bcrypt = require("bcrypt");
-
-
+const apiRoutes = require('./api');
 const homeRoutes = require('./homeRoutes');
 
 
-routes.use('/', homeRoutes);
-
-// Direct users to static files
-// This needs to go through the handlebars
+router.use('/', homeRoutes);
+router.use('/api', apiRoutes);
 
 
-module.exports = routes;
+module.exports = router;

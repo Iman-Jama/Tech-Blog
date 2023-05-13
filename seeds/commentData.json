@@ -1,11 +1,31 @@
-[  {    "username": 1,   
-         "comment_text": "Great post! I learned a lot.",    
-         "blog_id": 1  }, 
-
-{    "username": 2,   
-     "comment_text": "I totally agree with you.",   
-      "blog_id": 1  },  
-
-{    "username": 3,    
-    "comment_text": "This is really helpful. Thanks for sharing.",   
-     "blog_id": 2  }]
+[
+    {
+      "comment_id": 1,
+      "user_name": "jane_smith",
+      "comment_text": "Great post! Thanks for sharing.",
+      "date_created": "2022-01-01T12:00:00.000Z",
+      "blog_id": 1
+    },
+    {
+      "comment_id": 2,
+      "user_name": "bob_smith",
+      "comment_text": "I disagree with your opinion.",
+      "date_created": "2022-01-02T12:00:00.000Z",
+      "blog_id": 1
+    },
+    {
+      "comment_id": 3,
+      "user_name": "john_doe",
+      "comment_text": "Nice work! Keep it up.",
+      "date_created": "2022-01-03T12:00:00.000Z",
+      "blog_id": 2
+    },
+    {
+      "comment_id": 4,
+      "user_name": "jane_smith",
+      "comment_text": "I have a question about your post.",
+      "date_created": "2022-01-04T12:00:00.000Z",
+      "blog_id": 3
+    }
+  ]
+  

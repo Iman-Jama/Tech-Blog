@@ -11,13 +11,13 @@ class User extends Model {
 User.init(
   {
     // defines the columns
-    user_id: {
+    id: {
       type: DataTypes.INTEGER,
       allowNull: false,
       primaryKey: true,
       autoIncrement: true
     },
-    name: {
+    username: {
       type: DataTypes.STRING,
       allowNull: true,
     },

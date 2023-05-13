@@ -1,60 +1,51 @@
-const routes = require("express").Router();
-const User = require('../models/User');
+const router = require("express").Router();
+const {User, Blog, Comment} = require("../models")
 const bcrypt = require("bcrypt");
+const withAuth = require('../utils/withAuth');
 
-//To get the homepage
-routes.get("/", (req, res) => {
-    res.render("index")
-});
-
-//To get the register page
-routes.get("/register", (req, res) => {
-    res.render("register")
-});
-
-//To post to the register route
-routes.post("/auth/register", async (req, res) => {    
-    const { name, email, password, password_confirm } = req.body;
-  
-    try {
-      const user = await User.findOne({
-        where: { email: email }
-      });
-  
-      if (user) {
-        return res.render('register', {
-          message: 'This account already has a user!'
-        });
-      }
-  
-      if (password !== password_confirm) {
-        return res.render('register', {
-          message: 'Passwords do not match!'
-        });
-      }
-  
-      // Create the new user
-      const newUser = await User.create({
-        name: name,
-        email: email,
-        password: password
-      });
-  
-      // Redirect to a success page
-      res.status(200).json({ message: 'Registration successful!' });
-      
-    } catch (error) {
-      console.error(error);
-      res.render('error', {
-        message: 'An error occurred during registration.'
-      });
+router.get("/", withAuth, async (req, res) => {
+  try {
+    const blogData = await Blog.findAll({
+      include: [{
+        model: Comment,
+        as: "blog_comments",
+        attributes: ["username", "comment_text"]
+      }]
+    });
+    const blogs = blogData.map((blog) => blog.get({ plain: true }));
+    res.render("homepage", {
+      blogs,
+      logged_in: req.session.logged_in,
+    });
+  } catch (error) {
+      console.log(error);
+      // res.status(500).send("Internal server error");
     }
-  });
-  
+    
+});
 
-//To get the login page:
-routes.get("/login", (req, res) => {
-    res.render("login")
-})
 
-module.exports = routes;
+router.get('/login', (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect('/');
+    return;
+  }
+  res.render('login');
+});
+
+router.get("/register", (req, res) => {
+  if (req.session.logged_in) {
+    res.redirect('/');
+    return;
+  }
+  res.render("register");
+});
+
+module.exports = router;
+
+
+
+
+
+
+module.exports = router;
