@@ -1,0 +1,11 @@
+[  {    "username": 1,   
+         "comment_text": "Great post! I learned a lot.",    
+         "blog_id": 1  }, 
+
+{    "username": 2,   
+     "comment_text": "I totally agree with you.",   
+      "blog_id": 1  },  
+
+{    "username": 3,    
+    "comment_text": "This is really helpful. Thanks for sharing.",   
+     "blog_id": 2  }]

@@ -23,7 +23,7 @@ Blog.init(
         allowNull: true,
     },
     created_by: {
-        type: DataTypes.STRING,
+        type: DataTypes.INTEGER,
         allowNull: true,
         references: {
             model: "user",

@@ -41,9 +41,8 @@ routes.post("/auth/register", async (req, res) => {
       });
   
       // Redirect to a success page
-      res.render('profile', {
-        message: 'Registration successful!'
-      });
+      res.status(200).json({ message: 'Registration successful!' });
+      
     } catch (error) {
       console.error(error);
       res.render('error', {

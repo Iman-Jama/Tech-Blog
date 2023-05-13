@@ -14,7 +14,7 @@ Comment.init(
       autoIncrement: true
     },
     username: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: true,
       references: {
         model: "user",

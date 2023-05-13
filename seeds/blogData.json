@@ -1,0 +1,18 @@
+[  { 
+    "title": "My First Blog Post",   
+    "content": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce accumsan ipsum vel est elementum, eu pellentesque magna pharetra.",   
+    "created_by": 1  
+    },  
+    
+    {    
+    "title": "My Second Blog Post",   
+    "content": "Duis vitae libero in enim ullamcorper vestibulum. Suspendisse eget risus sit amet felis posuere efficitur.",    
+     "created_by": 2 
+ }, 
+
+    {    
+    "title": "My Third Blog Post",    
+     "content": "Pellentesque ultrices erat a velit bibendum, eget tristique eros malesuada. Suspendisse potenti. ",   
+    "created_by": 3 
+     }
+]
