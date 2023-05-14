@@ -1,26 +1,6 @@
 const router = require("express").Router();
 const {Blog, Comment, User} = require('../../models');
-
-
-  router.get('/:id', async (req, res) => {
-    try {
-      const blog = await Blog.findByPk(req.params.id, {
-        include: [{
-          model: Comment,
-          as: "blog_comments",
-          attributes: ['user_id', 'comment_text']
-        }],
-      });
-      if(blog){
-        res.render('blogs', { blog });
-      } else {
-        res.status(404).json({ message: 'Blog not found' });
-      }
-    } catch (err) {
-      console.error(err);
-      res.status(500).json({ message: 'Server error' });
-    }
-  });
+const withAuth = require('../../utils/withAuth');
   
   
   router.post('/', async (req, res) => {
@@ -35,6 +15,7 @@ const {Blog, Comment, User} = require('../../models');
     }
   });
   
+
 
   router.post('/:id/comments', async (req, res) => {
     try {
