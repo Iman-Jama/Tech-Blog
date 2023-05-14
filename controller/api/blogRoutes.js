@@ -16,7 +16,6 @@ const withAuth = require('../../utils/withAuth');
   });
   
 
-
   router.post('/:id/comments', async (req, res) => {
     try {
       const blog = await Blog.findByPk(req.params.id);
@@ -24,22 +23,31 @@ const withAuth = require('../../utils/withAuth');
         res.status(404).json({ message: 'Blog not found' });
         return;
       }
-      const { user_id, comment_text } = req.body;
-      if(!user_id || !comment_text){
-        res.status(400).json({ message: 'User ID and comment text are required' });
+      const { username, comment_text } = req.body;
+      if(!username || !comment_text){
+        res.status(400).json({ message: 'Username and comment text are required' });
+        return;
+      }
+      const user = await User.findOne({
+        where: {username}
+      });
+      if(!user){
+        res.status(404).json({ message: 'User not found' });
         return;
       }
       const comment = await Comment.create({
-        user_id,
+        user_id: user.id,
         comment_text,
         blog_id: blog.id
       });
-      res.json(comment);
+      res.redirect(`/blog/${blog.id}`);
     } catch (err) {
       console.error(err);
       res.status(500).json({ message: 'Server error' });
     }
   });
+
+  
   
 
   module.exports = router;

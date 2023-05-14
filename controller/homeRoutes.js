@@ -46,7 +46,7 @@ router.get('/blog/:id', async (req, res) => {
     });
 
     const blog = blogData.get({plain: true}); 
-  //  console.log(blog);
+   console.log(blog);
 
     res.render('blogs', { 
       ...blog,
@@ -59,7 +59,6 @@ router.get('/blog/:id', async (req, res) => {
   }
 });
 
-
 router.get('/login', (req, res) => {
   // console.log(req.session.logged_in);
   if (req.session.logged_in) {
@@ -69,47 +68,47 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-// router.get("/profile", (req, res) => {
-//   if (!req.session.logged_in) {
-//     res.redirect('/');
-//     return;
-//   }
-//   res.render("profile");
-// });
-
-router.get('/profile', async (req, res) => {
-  try {
-    const userData = await User.findByPk(req.body.username, {
-      
-      attributes: { exclude: ['password'] },
-      include: [{ model: Blog }],
-    });
-    console.log("this is the " + userData)
-
-    if (!userData) {
-      res.status(400).json({ message: "User does not exist" });
-      return;
-    }
-
-    const validPassword = bcrypt.compareSync(req.body.password, userData.password);
-    if (!validPassword) {
-      res.status(400).json({ message: "Incorrect password" });
-      return;
-    }
-
-    req.session.save(() => {
-      res.render('profile', { 
-        user: {
-          ...userData.get({ plain: true }),
-          logged_in: true,
-        }
-      });
-    });
-
-  } catch (error) {
-    res.status(400).json(error);
+router.get("/profile", (req, res) => {
+  if (!req.session.logged_in) {
+    res.redirect('/');
+    return;
   }
+  res.render("profile");
 });
+
+// router.get('/profile', async (req, res) => {
+//   try {
+//     const userData = await User.findByPk(req.body.username, {
+      
+//       attributes: { exclude: ['password'] },
+//       include: [{ model: Blog }],
+//     });
+//     console.log("this is the " + userData)
+
+//     if (!userData) {
+//       res.status(400).json({ message: "User does not exist" });
+//       return;
+//     }
+
+//     const validPassword = bcrypt.compareSync(req.body.password, userData.password);
+//     if (!validPassword) {
+//       res.status(400).json({ message: "Incorrect password" });
+//       return;
+//     }
+
+//     req.session.save(() => {
+//       res.render('profile', { 
+//         user: {
+//           ...userData.get({ plain: true }),
+//           logged_in: true,
+//         }
+//       });
+//     });
+
+//   } catch (error) {
+//     res.status(400).json(error);
+//   }
+// });
 
 router.get("/register", (req, res) => {
   if (req.session.logged_in) {
