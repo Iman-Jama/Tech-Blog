@@ -50,6 +50,7 @@ router.post('/logout', (req, res)=> {
     }
 });
 
+
 module.exports = router;
 
 //To post to the register route
