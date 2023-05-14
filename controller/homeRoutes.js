@@ -3,34 +3,49 @@ const {User, Blog, Comment} = require("../models")
 const bcrypt = require("bcrypt");
 const withAuth = require('../utils/withAuth');
 
-router.get("/", withAuth, async (req, res) => {
+router.get('/', async (req, res) => {
   try {
-    const blogData = await Blog.findAll({
-      include: [{
+    const blogs = await Blog.findAll({
+      include: [User,{
         model: Comment,
         as: "blog_comments",
-        attributes: ["username", "comment_text"]
-      }]
+        attributes: ['user_id', 'comment_text']
+      },
+      {
+        model: User,
+       
+        attributes: ['username']
+      }],
     });
-    const blogs = blogData.map((blog) => blog.get({ plain: true }));
-    res.render("homepage", {
-      blogs,
-      logged_in: req.session.logged_in,
-    });
-  } catch (error) {
-      console.log(error);
-      // res.status(500).send("Internal server error");
-    }
+    console.log(blogs);
+    console.log("this is username" +blogs[0].user.dataValues.username); // assuming 'name' is the attribute for the user's name
+    console.log("this is blog comments" + blogs[0].blog_comments[0]); // this will log the array of blog comments for each blog
+
     
+
+    res.render('homepage', { blogs });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ message: 'Server error' });
+  }
 });
 
 
 router.get('/login', (req, res) => {
+  console.log(req.session.logged_in);
   if (req.session.logged_in) {
     res.redirect('/');
     return;
   }
   res.render('login');
+});
+
+router.get("/profile", (req, res) => {
+  if (!req.session.logged_in) {
+    res.redirect('/');
+    return;
+  }
+  res.render("profile");
 });
 
 router.get("/register", (req, res) => {

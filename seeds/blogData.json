@@ -2,21 +2,21 @@
     {
       "id": 1,
       "title": "My First Blog Post",
-      "content": "This is the content of my first blog post.",
+      "content": "This is the content of my first blog post.I really hope you enjoy reading it, please leave some feedback",
       "created_by": "1",
       "date_created": "2022-01-01T00:00:00.000Z"
     },
     {
       "id": 2,
       "title": "My Second Blog Post",
-      "content": "This is the content of my second blog post.",
+      "content": "This is the content of my second blog post. The tech-blog is going strong!",
       "created_by": "2",
       "date_created": "2022-01-02T00:00:00.000Z"
     },
     {
       "id": 3,
       "title": "My Third Blog Post",
-      "content": "This is the content of my third blog post.",
+      "content": "This is the content of my third blog post.We are glad your back to read more of our posts.",
       "created_by": "3",
       "date_created": "2022-01-03T00:00:00.000Z"
     }

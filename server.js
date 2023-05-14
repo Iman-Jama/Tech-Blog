@@ -2,12 +2,9 @@
 const express = require('express');
 const path = require('path');
 const exphbs = require("express-handlebars");
-const session = require("express-session")
-
+const session = require("express-session");
 const bcrypt = require("bcrypt");
-
 const SequelizeStore = require("connect-session-sequelize")(session.Store);
-
 const helpers = require("./utils/helper");
 
 
@@ -40,6 +37,8 @@ app.use(session(sess));
 // Set Handlebars as the default template engine.
 app.engine("handlebars", hbs.engine);
 app.set("view engine", "handlebars");
+
+
 
 //middleware to ensure JSON data is parsed correctly
 app.use(express.json());
