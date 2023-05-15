@@ -22,7 +22,7 @@ router.get('/', async (req, res) => {
     // console.log("this is blog comments" + blogs[0].blog_comments[0]); // this will log the array of blog comments for each blog
 
     
-
+    // console.log(blogs)
     res.render('homepage', { blogs });
   } catch (err) {
     console.error(err);
@@ -68,12 +68,18 @@ router.get('/login', (req, res) => {
   res.render('login');
 });
 
-router.get("/profile", (req, res) => {
+router.get("/profile", async (req, res) => {
   if (!req.session.logged_in) {
     res.redirect('/');
     return;
   }
-  res.render("profile");
+  const blogs = await Blog.findAll( {
+    where: {
+      created_by: req.session.user_id
+    }
+  });
+  console.log(blogs)
+  res.render("profile", {blogs});
 });
 
 // router.get('/profile', async (req, res) => {

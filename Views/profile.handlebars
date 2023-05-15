@@ -6,22 +6,21 @@
   </div>
 </div>
 
+<div>Your previous blogs:</div>
+
 <div class="row mt-4">
   <div class="col-md-6">
-    <h3>Create a New Project:</h3>
+    <h3>Create a New Blog:</h3>
 
-    <form class="form new-project-form">
+    <form class="form new-blog-form" action="/api/blog">
       <div class="form-group">
-        <label for="project-name">project name:</label>
-        <input class="form-input" type="text" id="project-name" name="project-name" />
+        <label for="title">Blog name:</label>
+        <input class="form-input" type="text" id="title" name="title" />
       </div>
+
       <div class="form-group">
-        <label for="project-funding">needed funding ($):</label>
-        <input class="form-input" type="number" id="project-funding" name="project-funding" />
-      </div>
-      <div class="form-group">
-        <label for="project-desc">description:</label>
-        <textarea class="form-input" id="project-desc" name="project-desc"></textarea>
+        <label for="content">Write your Blog here:</label>
+        <textarea class="form-input" id="content" name="Content"></textarea>
       </div>
       <div class="form-group">
         <button type="submit" class="btn btn-primary">Create</button>
@@ -29,22 +28,41 @@
     </form>
   </div>
 
-  {{#if projects.length}}
-  <div class="col-md-6 project-list">
-    <h3>Current Projects:</h3>
+  {{#if blogs}}
+    <h3>Current Blogs:</h3>
 
-    {{#each projects as |project|}}
-    <div class="row mb-2">
-      <div class="col-md-8">
-        <h4><a href="/project/{{project.id}}">{{project.name}}</a></h4>
-      </div>
-      <div class="col-md-4">
-        <button class="btn btn-sm btn-danger" data-id="{{project.id}}">DELETE</button>
+    <div class="container mt-4">
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+        {{#each blogs as |blog|}}
+          <div class="col mb-4">
+            <div class="card">
+              <div class="card-body">
+                <h2
+                  class="card-title text-primary"
+                >{{blog.dataValues.title}}</h2>
+                <p class="card-text">Created by
+                  {{blog.user.dataValues.username}}
+                  on
+                  {{format_date blog.dataValues.date_created}}</p>
+                <p class="card-text">{{blog.dataValues.content}}</p>
+
+                {{#if blog.blog_comments.dataValues}}
+                  <h3 class="card-title text-info">Comments</h3>
+                  <!-- Loop over each comment in the blog_comments array -->
+                  {{#each blog.blog_comments.dataValues as |comment|}}
+                    <div class="comment">
+                      <p>Comment by User {{comment.user_id}}:</p>
+                      <p>{{comment.comment_text}}</p>
+                    </div>
+                  {{/each}}
+                {{/if}}
+              </div>
+            </div>
+          </div>
+        {{/each}}
       </div>
     </div>
-    {{/each}}
-  </div>
   {{/if}}
 </div>
 
-<script src="./js/profile.js"></script>
+<script src="/js/profile.js"></script>
