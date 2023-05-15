@@ -4,16 +4,22 @@ const withAuth = require('../../utils/withAuth');
   
 router.get('/', async (req, res) => {
   try {
-    const blogs = await Blog.findAll( {
+    const blogsData = await Blog.findAll( {
       where: {
         created_by: req.session.user_id
-      }
+      },
+      include: [
+      {
+        model: User,
+       
+        attributes: ['username']
+      }]
     });
     // console.log(blogs);
     // console.log("this is username" +blogs[0].user.dataValues.username); // assuming 'name' is the attribute for the user's name
     // console.log("this is blog comments" + blogs[0].blog_comments[0]); // this will log the array of blog comments for each blog
-
-    blogs = blogs.map(blog => blog.get({plain: true}))
+// console.log(blogsData);
+    const blogs = blogsData.map(blog => blog.get({plain: true}))
     console.log(blogs)
     res.render('profile', { blogs });
   } catch (err) {
@@ -22,17 +28,7 @@ router.get('/', async (req, res) => {
   }
 });
   
-  // router.post('/', async (req, res) => {
-  //   try {
-  //     const { title, content, created_by } = req.body;
-  //     const blog = await Blog.create({ title, content, created_by });
-  //     res.json(blog);
 
-  //   } catch (err) {
-  //     console.error(err);
-  //     res.status(500).json({ message: 'Server error' });
-  //   }
-  // });
   
 
   router.post('/:id/comments', async (req, res) => {

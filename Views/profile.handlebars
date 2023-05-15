@@ -1,35 +1,37 @@
-<div>This is the profile handlebars</div>
+
 
 <div class="row">
   <div class="col-auto">
-    <h2>Welcome, {{username}}!</h2>
+    <h2>Welcome, {{blog.user.dataValues.username}}!</h2>
   </div>
 </div>
 
-<div>Your previous blogs:</div>
 
 <div class="row mt-4">
-  <div class="col-md-6">
+ <div class="col-md-6 mx-auto px-4">
     <h3>Create a New Blog:</h3>
 
-    <form class="form new-blog-form" action="/api/blog">
+    <form class="new-blog-form" action="/api/blog">
       <div class="form-group">
         <label for="title">Blog name:</label>
-        <input class="form-input" type="text" id="title" name="title" />
+        <input class="form-control" type="text" id="title" name="title" />
       </div>
 
       <div class="form-group">
         <label for="content">Write your Blog here:</label>
-        <textarea class="form-input" id="content" name="Content"></textarea>
+        <textarea id="content" name="content" class="form-control"></textarea>
       </div>
-      <div class="form-group">
+
+      <div class="new-blog-form">
         <button type="submit" class="btn btn-primary">Create</button>
       </div>
     </form>
   </div>
+</div>
+
 
   {{#if blogs}}
-    <h3>Current Blogs:</h3>
+    <h3 class = "md-2 g-4">Your previous Blogs:</h3>
 
     <div class="container mt-4">
       <div class="row row-cols-1 row-cols-md-2 g-4">
@@ -66,3 +68,4 @@
 </div>
 
 <script src="/js/profile.js"></script>
+
