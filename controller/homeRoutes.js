@@ -121,7 +121,7 @@ router.get("/register", (req, res) => {
     res.redirect('/');
     return;
   }
-  res.render("register");
+  res.render("profile");
 });
 
 module.exports = router;
