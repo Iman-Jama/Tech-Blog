@@ -24,6 +24,7 @@ router.get('/', async (req, res) => {
     
     // console.log(blogs)
     res.render('homepage', { blogsData });
+    // res.status(200).json(blogsData);
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server error' });
@@ -123,12 +124,5 @@ router.get("/register", (req, res) => {
   }
   res.render("profile");
 });
-
-module.exports = router;
-
-
-
-
-
 
 module.exports = router;
