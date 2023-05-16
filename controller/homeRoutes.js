@@ -23,7 +23,7 @@ router.get('/', async (req, res) => {
     // const blogs = blogsData.map(blog => blog.get({plain:true}));
     
     // console.log(blogs)
-    res.render('homepage', { blogs });
+    res.render('homepage', { blogsData });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server error' });
