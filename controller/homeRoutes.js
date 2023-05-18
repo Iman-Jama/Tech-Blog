@@ -5,8 +5,8 @@ const withAuth = require('../utils/withAuth');
 
 router.get('/', async (req, res) => {
   try {
-    const blogsData = await Blog.findAll({
-      include: [{
+    const blogs = await Blog.findAll({
+      include: [User,{
         model: Comment,
         as: "blog_comments",
         attributes: ['user_id', 'comment_text']
@@ -17,14 +17,19 @@ router.get('/', async (req, res) => {
         attributes: ['username']
       }],
     });
- 
-    res.render('homepage', { blogsData });
-    // res.status(200).json(blogsData);
+    // console.log(blogs);
+    // console.log("this is username" +blogs[0].user.dataValues.username); // assuming 'name' is the attribute for the user's name
+    // console.log("this is blog comments" + blogs[0].blog_comments[0]); // this will log the array of blog comments for each blog
+
+    
+    // console.log(blogs)
+    res.render('homepage', { blogs });
   } catch (err) {
     console.error(err);
     res.status(500).json({ message: 'Server error' });
   }
 });
+
 
 
 router.get('/blog/:id', async (req, res) => {
